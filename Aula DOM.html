@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM</title>
+
+    <script>
+        function Verificar() {
+
+            document.formulario.txtNome.style.background = "White" ;
+            document.formulario.txtIdade.style.background = "White" ;
+            document.formulario.txtEmail.style.background = "White" ;
+
+            var n, i, e;
+            
+            n = document.formulario.txtNome.value ;
+            if(n.length == 0) {
+                alert("Preencha corretamento o campo nome");
+                document.formulario.txtNome.style.background = "salmon" ;
+                document.formulario.txtNome.focus() ;
+                return false ;
+            }
+
+            i = document.getElementById("txtIdade").value ;
+            if ( isNaN(i) ||  i.length == 0  ) {
+                alert("Preencha corretamento o campo idade");
+                document.formulario.txtIdade.style.background = "salmon" ;
+                document.getElementById("txtIdade").value = "" ;
+                document.formulario.txtIdade.focus() ;
+                return false ;
+            }
+
+            e = document.getElementById("txtEmail").value ;
+            if ( e.indexOf("@") < 0 ) {
+                alert("Preencha corretamento o campo email");
+                document.formulario.txtEmail.style.background = "salmon" ;
+                document.getElementById("txtEmail").value = "" ;
+                document.formulario.txtEmail.focus() ;
+                return false ;
+            }
+
+            document.formulario.submit();
+        }
+    </script>
+</head>
+<body>
+    
+    <h1>Cadastro</h1>
+
+    <form name="formulario" action="gravar.jsp" method="post">
+        <fieldset>
+            <legend>Alunos</legend>
+            Nome:
+            <input type="text" name="txtNome" id="txtNome"> <br>
+            Idade:
+            <input type="text" name="txtIdade" id="txtIdade"> <br>
+            E-mail:
+            <input type="text" name="txtEmail" id="txtEmail"> <br>
+            <input type="button" value="Gravar" onclick="Verificar()">
+            <style>input {display: flex; align-items: center;}</style>
+        </fieldset>
+    </form>
+</body>
+</html>
